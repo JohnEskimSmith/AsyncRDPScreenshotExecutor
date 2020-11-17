@@ -484,8 +484,7 @@ if __name__ == "__main__":
                 "height": args.height,
                 "mode": "stdout"
                 }
-    # path_to_rdpy = "/rdpyscreenshot"
-    path_to_rdpy = "/home/user/pythoncode2/rdpy"
+    path_to_rdpy = "/rdpyscreenshot"
     template_run_script = f"timeout {args.timeout+5} xvfb-run --auto-servernum --server-num=1 python2 {path_to_rdpy}/rdpscreenshot.py"
     count_cor = args.senders
     # region limits input Queue
