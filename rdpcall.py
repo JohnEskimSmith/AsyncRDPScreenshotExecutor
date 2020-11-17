@@ -282,6 +282,12 @@ async def run_external_screenshot(target: NamedTuple,
                     pass
                 if line:
                     await queue_out.put(line)
+            else:
+                try:
+                    str_error = stdout.decode()
+                    str_error = str_error + f"__returncode__:{proc.returncode}"
+                except:
+                    pass
         elif stderr:
             str_error = 'some errors'
             try:
@@ -478,8 +484,9 @@ if __name__ == "__main__":
                 "height": args.height,
                 "mode": "stdout"
                 }
-    path_to_rdpy = "/rdpyscreenshot"
-    template_run_script = f"xvfb-run --auto-servernum --server-num=1 python2 {path_to_rdpy}/rdpscreenshot.py"
+    # path_to_rdpy = "/rdpyscreenshot"
+    path_to_rdpy = "/home/user/pythoncode2/rdpy"
+    template_run_script = f"timeout {args.timeout+5} xvfb-run --auto-servernum --server-num=1 python2 {path_to_rdpy}/rdpscreenshot.py"
     count_cor = args.senders
     # region limits input Queue
     queue_limit_targets = count_cor
